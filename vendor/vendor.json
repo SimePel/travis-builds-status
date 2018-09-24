@@ -1,0 +1,43 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "8cFUIC7dY7m1yeCurLl1MdGSaPI=",
+			"path": "github.com/bwmarrin/discordgo",
+			"revision": "73f6772a2b7cc95e29c462e4f15bf07cbe0d3854",
+			"revisionTime": "2018-04-04T15:55:14Z"
+		},
+		{
+			"checksumSHA1": "+1LsRRZKa06yTFg/Tu5NCsyHxOA=",
+			"path": "github.com/gorilla/websocket",
+			"revision": "eb925808374e5ca90c83401a40d711dc08c0c0f6",
+			"revisionTime": "2018-03-06T18:15:48Z"
+		},
+		{
+			"checksumSHA1": "/U7f2gaH6DnEmLguVLDbipU6kXU=",
+			"path": "golang.org/x/crypto/internal/subtle",
+			"revision": "0709b304e793a5edb4a2c0145f281ecdc20838a4",
+			"revisionTime": "2018-08-31T22:38:59Z"
+		},
+		{
+			"checksumSHA1": "/D0Q9baFJAeXy2an6mwni/FJHzw=",
+			"path": "golang.org/x/crypto/nacl/secretbox",
+			"revision": "0709b304e793a5edb4a2c0145f281ecdc20838a4",
+			"revisionTime": "2018-08-31T22:38:59Z"
+		},
+		{
+			"checksumSHA1": "vKbPb9fpjCdzuoOvajOJnYfHG2g=",
+			"path": "golang.org/x/crypto/poly1305",
+			"revision": "0709b304e793a5edb4a2c0145f281ecdc20838a4",
+			"revisionTime": "2018-08-31T22:38:59Z"
+		},
+		{
+			"checksumSHA1": "cRCpfAgTnlIDpdcfjivbiv+9YJU=",
+			"path": "golang.org/x/crypto/salsa20/salsa",
+			"revision": "0709b304e793a5edb4a2c0145f281ecdc20838a4",
+			"revisionTime": "2018-08-31T22:38:59Z"
+		}
+	],
+	"rootPath": "github.com/SimePel/travis-builds-status"
+}
