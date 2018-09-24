@@ -4,5 +4,3 @@ services:
     env_file:
     - .env
     build: .
-    ports:
-     - "8080:80"

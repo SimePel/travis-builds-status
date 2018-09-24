@@ -33,7 +33,12 @@ func main() {
 	router.GET("/", index)
 	router.POST("/", travis)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
 
 func index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
