@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 
 	"github.com/julienschmidt/httprouter"
@@ -53,10 +54,14 @@ func travis(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	}
 	r.Body.Close()
 
-	fmt.Printf("%s\n", b)
+	values, err := url.ParseQuery(string(b))
+	if err != nil {
+		log.Print("url.ParseQuery:", err)
+		return
+	}
 
 	var t *Travis
-	err = json.Unmarshal(b, &t)
+	err = json.Unmarshal([]byte(values.Get("payload")), &t)
 	if err != nil {
 		log.Print("json.Unmarshal:", err)
 		return
