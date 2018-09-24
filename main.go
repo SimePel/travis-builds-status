@@ -33,7 +33,7 @@ func main() {
 	router.GET("/", index)
 	router.POST("/", travis)
 
-	log.Fatal(http.ListenAndServe(":80", router))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 func index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
