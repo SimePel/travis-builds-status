@@ -33,7 +33,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	wb, err := bot.Webhook("493254715698839553")
+	webhookID := os.Getenv("WEBHOOK_ID")
+	wb, err := bot.Webhook(webhookID)
 	if err != nil {
 		log.Fatal(err)
 	}
