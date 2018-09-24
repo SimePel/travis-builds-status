@@ -53,6 +53,8 @@ func travis(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	}
 	r.Body.Close()
 
+	fmt.Printf("%s\n", b)
+
 	var t *Travis
 	err = json.Unmarshal(b, &t)
 	if err != nil {
