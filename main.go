@@ -5,8 +5,10 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"net"
+	"net/http"
 	"os"
+
+	"github.com/julienschmidt/httprouter"
 
 	"github.com/bwmarrin/discordgo"
 )
@@ -27,6 +29,32 @@ type Travis struct {
 }
 
 func main() {
+	router := httprouter.New()
+	router.GET("/", index)
+	router.POST("/", travis)
+
+	log.Fatal(http.ListenAndServe(":8080", router))
+}
+
+func index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	fmt.Fprint(w, "There is nothing interesting!")
+}
+
+func travis(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	b, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Print("ioutil.ReadAll:", err)
+		return
+	}
+	r.Body.Close()
+
+	var t *Travis
+	err = json.Unmarshal(b, &t)
+	if err != nil {
+		log.Print("json.Unmarshal:", err)
+		return
+	}
+
 	token := os.Getenv("BOT_TOKEN")
 	bot, err := discordgo.New("Bot " + token)
 	if err != nil {
@@ -39,34 +67,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	ln, err := net.Listen("tcp", ":80")
-	if err != nil {
-		log.Fatal(err)
-	}
-	for {
-		conn, err := ln.Accept()
-		if err != nil {
-			log.Print(err)
-			continue
-		}
-		go handle(conn, bot, wb)
-	}
-}
-
-func handle(c net.Conn, bot *discordgo.Session, wb *discordgo.Webhook) {
-	b, err := ioutil.ReadAll(c)
-	if err != nil {
-		log.Print("ioutil.ReadAll:", err)
-		return
-	}
-
-	var t *Travis
-	err = json.Unmarshal(b, &t)
-	if err != nil {
-		log.Print("json.Unmarshal:", err)
-		return
-	}
-
 	d := discordgo.WebhookParams{
 		Embeds: []*discordgo.MessageEmbed{{
 			URL:         t.BuildURL,
@@ -75,10 +75,9 @@ func handle(c net.Conn, bot *discordgo.Session, wb *discordgo.Webhook) {
 		},
 		},
 	}
+
 	err = bot.WebhookExecute(wb.ID, wb.Token, false, &d)
 	if err != nil {
 		log.Print(err)
 	}
-
-	c.Close()
 }

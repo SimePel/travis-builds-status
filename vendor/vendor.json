@@ -15,6 +15,12 @@
 			"revisionTime": "2018-03-06T18:15:48Z"
 		},
 		{
+			"checksumSHA1": "T+kh2poktvucf6QrY3nRo09otto=",
+			"path": "github.com/julienschmidt/httprouter",
+			"revision": "d1898390779332322e6b5ca5011da4bf249bb056",
+			"revisionTime": "2018-02-22T16:05:26Z"
+		},
+		{
 			"checksumSHA1": "/U7f2gaH6DnEmLguVLDbipU6kXU=",
 			"path": "golang.org/x/crypto/internal/subtle",
 			"revision": "0709b304e793a5edb4a2c0145f281ecdc20838a4",
